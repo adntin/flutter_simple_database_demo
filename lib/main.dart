@@ -83,7 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // [_SimpleDatabaseServer]'s [SharedPreferences] cached values.
     Future.wait([sharedPreferencesSet, tempDirFuture]).then((values) {
       final Directory? tempDir = values[1] as Directory?;
-      final String dbPath = path.join(tempDir!.path, 'database.db');
+      final String dbPath = path.join(tempDir!.path, 'my_database.db');
+      print('数据库路径: $dbPath');
       SimpleDatabase.open(dbPath).then((database) {
         setState(() {
           _database = database;
@@ -141,7 +142,10 @@ class _MyHomePageState extends State<MyHomePage> {
           Expanded(
             child: ListView.builder(
               itemBuilder: (context, index) {
-                return ListTile(title: Text(_entries![index]));
+                return ListTile(
+                  leading: CircleAvatar(child: Text(index.toString())),
+                  title: Text(_entries![index]),
+                );
               },
               itemCount: _entries?.length ?? 0,
             ),
