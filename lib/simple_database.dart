@@ -223,6 +223,7 @@ class _SimpleDatabaseServer {
     if (bytes.length > _entrySize) {
       bytes = bytes.sublist(0, _entrySize);
     } else if (bytes.length < _entrySize) {
+      // 注意: 每一条数据都是按 _entrySize 长度存储
       List<int> newBytes = List.filled(_entrySize, 0);
       for (int i = 0; i < bytes.length; ++i) {
         newBytes[i] = bytes[i];
@@ -241,6 +242,7 @@ class _SimpleDatabaseServer {
     if (file.existsSync()) {
       RandomAccessFile reader = file.openSync();
       List<int> buffer = List.filled(_entrySize, 0);
+      // 注意: 每一条数据都是按 _entrySize 长度读取
       while (reader.readIntoSync(buffer) == _entrySize) {
         List<int> foo = buffer.takeWhile((value) => value != 0).toList();
         String string = utf8.decode(foo);

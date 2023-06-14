@@ -2,6 +2,9 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+// 示例源码
+// https://github.com/flutter/samples/tree/294ea4ff8fce588f332e82e3ee97fa3d3429c9a4/background_isolate_channels
+
 import 'dart:io' show Directory;
 
 import 'package:flutter/material.dart';
